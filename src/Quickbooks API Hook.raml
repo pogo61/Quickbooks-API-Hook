@@ -1,0 +1,1453 @@
+#%RAML 0.8
+title: Quickbooks API Hook
+version: 1.0
+baseUri: https://quickbooks.api.intuit.com/v3
+/company:
+  /{companyId}:
+    /account:
+      post:
+        description: <<create/update an Account for the company>>
+        queryParameters: 
+          "operation": 
+            description: when present and value is "update" then the update body is to be used
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "AccountType": "Cost of Goods Sold",  <required for Create>
+                "Active": true,
+                "AttachableRef": [],
+                "CurrencyRef": {
+                  "name": "United States Dollar",
+                  "value": "USD"
+                },
+                "CurrentBalance": 0,
+                "CurrentBalanceWithSubAccounts": 0,
+                "CustomField": [],
+                "FullyQualifiedName": "1xd4zwJh3RZsxVwD77Dj",
+                "Id": "55",
+                "MetaData": {
+                  "CreateTime": "2013-04-09T03:23:03-07:00",
+                  "LastUpdatedTime": "2013-04-09T03:23:03-07:00"
+                },
+                "Name": "qQqcZ1tSkFayEA48LJ6u",  <required for Create>
+                "SubAccount": false,
+                "SyncToken": "0",
+                "domain": "QBO",
+                "sparse": false
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the account specified by the entityId>>
+          responses:
+            "200":
+    /query:
+      get:
+        description: <<search for data within the company>>
+        queryParameters: 
+          "query": 
+            description: query string
+            type: string
+            required: true
+        responses:
+          "200":
+    /attachable:
+      post:
+        description: <<create/update/delete an Attachable for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "AttachableRef": [
+                  {
+                    "EntityRef": {
+                      "type": "Vendor",
+                      "value": "1057"
+                    },
+                    "IncludeOnSend": "false"
+                  }
+                ],
+                "Lat": "25.293189023",
+                "Long": "-21.3253249834",
+                "Note": "This is an attached note.",
+                "PlaceName": "Mountain View",
+                "Tag": "Create Attachable with Note",
+                "domain": "QBO",
+                "sparse": false
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the attachable specified by the entityId>>
+          responses:
+            "200":
+    /bill:
+      post:
+        description: <<create/update/delete a Bill for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "SalesTermRef": {
+                  "value": "12"
+                },
+                "DueDate": "2013-06-09",
+                "Balance": 200.0,
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "890",
+                "SyncToken": "1",
+                "MetaData": {
+                  "CreateTime": "2014-04-04T12:38:01-07:00",
+                  "LastUpdatedTime": "2014-04-04T12:48:56-07:00"
+                },
+                "DocNumber": "56789",
+                "TxnDate": "2014-04-04",
+                "DepartmentRef": {
+                  "value": "1",
+                  "name": "Garden Services"
+                },
+                "CurrencyRef": {
+                  "value": "USD",
+                  "name": "United States Dollar"
+                },
+                "PrivateNote": "This is a updated memo.",
+                "Line": [
+                  {
+                    "Id": "1",
+                    "Description": "Gasoline",
+                    "Amount": 200.0,
+                    "DetailType": "AccountBasedExpenseLineDetail",
+                    "AccountBasedExpenseLineDetail": {
+                      "CustomerRef": {
+                        "value": "20",
+                        "name": "Blackwell, Edward"
+                      },
+                      "AccountRef": {
+                        "value": "75",
+                        "name": "Automobile"
+                      },
+                      "BillableStatus": "Billable",
+                      "MarkupInfo": {
+                        "Percent": 10
+                      },
+                      "TaxCodeRef": {
+                        "value": "TAX"
+                      }
+                    }
+                  }
+                ],
+                "VendorRef": {
+                  "value": "81",
+                  "name": "Bayshore CalOil Service"
+                },
+                "APAccountRef": {
+                  "value": "49",
+                  "name": "Accounts Payable"
+                },
+                "TotalAmt": 200.0
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the Bill specified by the entityId>>
+          responses:
+            "200":
+    /billpayment:
+      post:
+        description: <<create/update/delete an Bill Payment for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "BillPayment": {
+                  "VendorRef": {
+                    "value": "32",
+                    "name": "Computer Services by DJ"
+                  },
+                  "PayType": "Check",
+                  "CheckPayment": {
+                    "BankAccountRef": {
+                      "value": "133",
+                      "name": "Barter Account"
+                    },
+                    "PrintStatus": "NeedToPrint"
+                  },
+                  "TotalAmt": 75.0,
+                  "domain": "QBO",
+                  "sparse": false,
+                  "Id": "844",
+                  "SyncToken": "0",
+                  "MetaData": {
+                    "CreateTime": "2013-10-18T15:15:12-07:00",
+                    "LastUpdatedTime": "2013-10-18T15:15:12-07:00"
+                  },
+                  "TxnDate": "2013-10-18",
+                  "PrivateNote": "Acct. 1JK90",
+                  "Line": [
+                    {
+                      "Amount": 75.0,
+                      "LinkedTxn": [
+                        {
+                          "TxnId": "4",
+                          "TxnType": "Bill"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "time": "2013-10-18T15:15:11.925-07:00"
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the Bill Payment specified by the entityId>>
+          responses:
+            "200":
+    /class:
+      post:
+        description: <<create/update an Account for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "Name": "KlassFullUpdate-1373581580453",
+                "SubClass": true,
+                "ParentRef": {
+                  "value": "100100000000000321211"
+                },
+                "FullyQualifiedName": "ClassJUnitInputCreateRead-1373581578154:ClassJUnitInputCreateRead-1373581579676",
+                "Active": true,
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "100100000000000321212",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2013-07-11T15:23:15-07:00",
+                  "LastUpdatedTime": "2013-07-11T15:23:15-07:00"
+                },
+                "CustomField": [],
+                "AttachableRef": []
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the account specified by the entityId>>
+          responses:
+            "200":
+    /companyinfo:
+      /{companyid}:
+        get:
+          description: <<get the company specified by the companyId>>
+          responses:
+            "200":
+    /creditmemo:
+      post:
+        description: <<create/update/delete an Account for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "CreditMemo": {
+                  "RemainingCredit": 10498.95,
+                  "domain": "QBO",
+                  "sparse": false,
+                  "Id": "276",
+                  "SyncToken": "0",
+                  "MetaData": {
+                    "CreateTime": "2013-04-29T17:30:30-07:00",
+                    "LastUpdatedTime": "2013-04-29T17:30:30-07:00"
+                  },
+                  "CustomField": [
+                    {
+                      "Name": "Custom 1",
+                      "Type": "StringType"
+                    },
+                    {
+                      "Name": "Custom 2",
+                      "Type": "StringType"
+                    },
+                    {
+                      "Name": "Custom 3",
+                      "Type": "StringType"
+                    }
+                  ],
+                  "DocNumber": "1139",
+                  "TxnDate": "2013-04-29",
+                  "DepartmentRef": {
+                    "value": "1",
+                    "name": "testDept"
+                  },
+                  "PrivateNote": "CreditMemo",
+                  "Line": [
+                    {
+                      "Id": "1",
+                      "LineNum": 1,
+                      "Description": "QBO",
+                      "Amount": 9999.00,
+                      "DetailType": "SalesItemLineDetail",
+                      "SalesItemLineDetail": {
+                        "ItemRef": {
+                          "value": "1",
+                          "name": "Sales"
+                        },
+                        "UnitPrice": 9999,
+                        "Qty": 1,
+                        "TaxCodeRef": {
+                          "value": "TAX"
+                        }
+                      }
+                    },
+                    {
+                      "Amount": 9999.00,
+                      "DetailType": "SubTotalLineDetail",
+                      "SubTotalLineDetail": {}
+                    },
+                    {
+                      "Amount": 999.90,
+                      "DetailType": "DiscountLineDetail",
+                      "DiscountLineDetail": {
+                        "PercentBased": true,
+                        "DiscountPercent": 10,
+                        "DiscountAccountRef": {
+                          "value": "51",
+                          "name": "Discounts given"
+                        }
+                      }
+                    }
+                  ],
+                  "TxnTaxDetail": {
+                    "TxnTaxCodeRef": {
+                      "value": "9"
+                    },
+                    "TotalTax": 1499.85,
+                    "TaxLine": [
+                      {
+                        "Amount": 1499.85,
+                        "DetailType": "TaxLineDetail",
+                        "TaxLineDetail": {
+                          "TaxRateRef": {
+                            "value": "8"
+                          },
+                          "PercentBased": true,
+                          "TaxPercent": 15,
+                          "NetAmountTaxable": 9999.00
+                        }
+                      }
+                    ]
+                  },
+                  "CustomerRef": {
+                    "value": "96",
+                    "name": "yOvUlsnhx6 AOGcYnY5TI"
+                  },
+                  "BillAddr": {
+                    "Id": "92",
+                    "Line1": "2700 Garcia Avenue",
+                    "City": "Mountain View",
+                    "Country": "USA",
+                    "CountrySubDivisionCode": "CA",
+                    "PostalCode": "94043",
+                    "Lat": "37.4276176",
+                    "Long": "-122.099344"
+                  },
+                  "ShipAddr": {
+                    "Id": "93",
+                    "Line1": "2500 Garcia Avenue",
+                    "City": "Mountain View",
+                    "Country": "USA",
+                    "CountrySubDivisionCode": "CA",
+                    "PostalCode": "94043",
+                    "Lat": "37.428314",
+                    "Long": "-122.0961024"
+                  },
+                  "TotalAmt": 10498.95,
+                  "ApplyTaxAfterDiscount": false,
+                  "PrintStatus": "NotSet",
+                  "EmailStatus": "NotSet",
+                  "BillEmail": {
+                    "Address": "test@abc.com"
+                  },
+                  "Balance": 10498.95
+                },
+                "time": "2013-04-29T17:30:51.609-07:00"
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the account specified by the entityId>>
+          responses:
+            "200":
+    /customer:
+      post:
+        description: <<create/update a customer for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                Taxable: false,
+                BillAddr:
+                {
+                    Id: "20",
+                    Line1: "Intuit",
+                    Line2: "Building 1",
+                    Line3: "345 st",
+                    Line4: "Dept 12",
+                    Line5: "Cube 999",
+                    City: "Mountain View",
+                    Country: "USA",
+                    CountrySubDivisionCode: "CA",
+                    PostalCode: "95123",
+                    Lat: "37.2374847",
+                    Long: "-121.8277925"
+                },
+                ShipAddr:
+                {
+                    Id: "21",
+                    Line1: "Intuit",
+                    Line2: "Building 1",
+                    Line3: "123 street",
+                    Line4: "Dept 12",
+                    Line5: "Cube 999",
+                    City: "San Jose",
+                    Country: "USA",
+                    CountrySubDivisionCode: "CA",
+                    PostalCode: "95123",
+                    Lat: "37.2374847",
+                    Long: "-121.8277925"
+                },
+                sparse: false,
+                Id: "91",
+                SyncToken: "1",
+                Title: "Mr.",
+                GivenName: "Bill",
+                MiddleName: "Jr.",
+                FamilyName: "Billy",
+                FullyQualifiedName: "Peter G. Griffin",
+                DisplayName: "Peter G. Griffin"
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the account specified by the entityId>>
+          responses:
+            "200":
+    /department:
+      post:
+        description: <<create/update a department for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "Name": "Support Department",
+                "SubDepartment": false,
+                "FullyQualifiedName": "Marketing Department",
+                "Active": true,
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "2",
+                "SyncToken": "1",
+                "MetaData": {
+                  "CreateTime": "2013-08-13T11:52:48-07:00",
+                  "LastUpdatedTime": "2013-08-13T11:52:48-07:00"
+                }
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the department specified by the entityId>>
+          responses:
+            "200":
+    /employee:
+      post:
+        description: <<create/update a employee for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "SSN": "XXX-XX-XXXX",
+                "PrimaryAddr": {
+                  "Id": "356",
+                  "Line1": "45 N. Elm Street",
+                  "City": "Middlefield",
+                  "CountrySubDivisionCode": "CA",
+                  "PostalCode": "93242",
+                  "Lat": "37.4601027",
+                  "Long": "-122.1523605"
+                },
+                "BillableTime": true,
+                "BillRate": "50",
+                "HiredDate": "2014-11-01",
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "113",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2013-11-25T09:30:07-08:00",
+                  "LastUpdatedTime": "2013-11-25T09:30:07-08:00"
+                },
+                "GivenName": "Jane",
+                "FamilyName": "Miller",
+                "DisplayName": "Jane Miller",
+                "PrintOnCheckName": "Jane Miller",
+                "Active": true,
+                "PrimaryPhone": {
+                  "FreeFormNumber": "234-525-1234"
+                }
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the employee specified by the entityId>>
+          responses:
+            "200":
+    /estimate:
+      post:
+        description: <<create/update a estimate for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "domain":"QBO",
+                "sparse":false,
+                "Id":"96",
+                "SyncToken":"0",
+                "CustomField":[
+                    {
+                        "Name":"Custom 1",
+                        "Type":"StringType"
+                    },
+                    {
+                        "Name":"Custom 2",
+                        "Type":"StringType"
+                    },
+                    {
+                        "Name":"Custom 3",
+                        "Type":"StringType"
+                    }
+                ],
+                "DocNumber":"1009",
+                "TxnDate":"2013-03-14",
+                "TxnStatus":"Pending",
+                "Line":[
+                    {
+                        "Id":"1",
+                        "LineNum":1,
+                        "Amount":20.00,
+                        "DetailType":"SalesItemLineDetail",
+                        "SalesItemLineDetail":
+                        {
+                            "ItemRef":
+                            {
+                                "value":"1",
+                                "name":"Sales"
+                            },
+                            "TaxCodeRef":
+                            {
+                                "value":"NON"
+                            }
+                        }
+                    },
+                    {
+                        "Amount":20.00,
+                        "DetailType":"SubTotalLineDetail",
+                        "SubTotalLineDetail":
+                        {
+                        }
+                    }
+                ],
+                "TxnTaxDetail":
+                {
+                    "TotalTax":0
+                },
+                "CustomerRef":
+                {
+                    "value":"1",
+                    "name":"Customer1 Test"
+                },
+                "BillAddr":
+                {
+                    "Id":"62",
+                    "Line1":"garcia ave",
+                    "City":"mountain view",
+                    "Country":"usa",
+                    "CountrySubDivisionCode":"ca",
+                    "PostalCode":"94043",
+                    "Lat":"37.4262864",
+                    "Long":"-122.0945241"
+                },
+                "ShipAddr":
+                {
+                    "Id":"63",
+                    "Line1":"garcia ave",
+                    "City":"mountain view",
+                    "Country":"usa",
+                    "CountrySubDivisionCode":"ca",
+                    "PostalCode":"94043",
+                    "Lat":"37.4262864",
+                    "Long":"-122.0945241"
+                },
+                "TotalAmt":20.00,
+                "ApplyTaxAfterDiscount":false,
+                "PrintStatus":"NeedToPrint",
+                "EmailStatus":"NotSet"
+                },
+                "time":"2013-03-14T11:44:39.734-07:00"
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the estimate specified by the entityId>>
+          responses:
+            "200":
+    /invoice:
+      post:
+        description: <<create/update a invoice for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "sparse": false,
+                "Id": "20",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2013-03-15T00:43:10-07:00",
+                  "LastUpdatedTime": "2013-03-15T00:43:10-07:00"
+                },
+                "DocNumber": "1011",
+                "Line": [
+                  {
+                    "Id": "1",
+                    "LineNum": 1,
+                    "Amount": 10.00,
+                    "Description": "update invoice line description",
+                    "DetailType": "SalesItemLineDetail",
+                    "SalesItemLineDetail": {
+                      "ItemRef": {
+                        "value": "1",
+                        "name": "Sales"
+                      },
+                      "TaxCodeRef": {
+                        "value": "NON"
+                      }
+                    }
+                  }
+                ],
+                "CustomerRef": {
+                  "value": "4",
+                  "name": "Mr V3 Service Customer Jr2"
+                },
+                "CustomerMemo": {
+                  "value": "This is a sample invoice with one sales line."
+                },
+                "DueDate": "2013-04-14"
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the invoice specified by the entityId>>
+          responses:
+            "200":
+    /item:
+      post:
+        description: <<create/update a item for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "Name": "Paper",
+                "Description": "This is the sales description.",
+                "Active": true,
+                "Taxable": true,
+                "UnitPrice": 150,
+                "Type": "Service",
+                "IncomeAccountRef": {
+                  "value": "63",
+                  "name": "IncomeAccountRef"
+                },
+                "PurchaseDesc": "This is the purchasing description.",
+                "PurchaseCost": 35,
+                "ExpenseAccountRef": {
+                  "value": "62",
+                  "name": "ExpenseAccountRef"
+                },
+                "TrackQtyOnHand": false,
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "16",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2013-03-13T15:38:58-07:00",
+                  "LastUpdatedTime": "2013-03-13T15:38:58-07:00"
+                }
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the item specified by the entityId>>
+          responses:
+            "200":
+    /journalentry:
+      post:
+        description: <<create/update/delete a journalentry for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "Adjustment": false,
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "159",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2015-01-16T09:14:28-08:00",
+                  "LastUpdatedTime": "2015-01-16T09:14:28-08:00"
+                },
+                "TxnDate": "2015-01-16",
+                "Line": [
+                  {
+                    "Id": "0",
+                    "Description": "nov portion of rider insurance",
+                    "Amount": 200.0,
+                    "DetailType": "JournalEntryLineDetail",
+                    "JournalEntryLineDetail": {
+                      "PostingType": "Debit",
+                      "AccountRef": {
+                        "value": "34",
+                        "name": "Opening Balance Equity"
+                      }
+                    }
+                  },
+                  {
+                    "Id": "1",
+                    "Description": "nov portion of rider insurance",
+                    "Amount": 200.0,
+                    "DetailType": "JournalEntryLineDetail",
+                    "JournalEntryLineDetail": {
+                      "PostingType": "Credit",
+                      "AccountRef": {
+                        "value": "44",
+                        "name": "Notes Payable"
+                      }
+                    }
+                  }
+                ],
+                "TxnTaxDetail": {}
+                }
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the journalentry specified by the entityId>>
+          responses:
+            "200":
+    /payment:
+      post:
+        description: <<create/update a payment for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "CustomerRef": {
+                  "value": "16"
+                },
+                "PaymentMethodRef": {
+                  "value": "16"
+                },
+                "PaymentRefNum": "123456",
+                "sparse": false,
+                "Id": "69",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2013-03-13T14:49:21-07:00",
+                  "LastUpdatedTime": "2013-03-13T14:49:21-07:00"
+                },
+                "Line": [
+                  {
+                    "Amount": 300,
+                    "LinkedTxn": [
+                      {
+                        "TxnId": "67",
+                        "TxnType": "Invoice"
+                      }
+                    ]
+                  },
+                  {
+                    "Amount": 300,
+                    "LinkedTxn": [
+                      {
+                        "TxnId": "68",
+                        "TxnType": "CreditMemo"
+                      }
+                    ]
+                  }
+                ]
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the payment specified by the entityId>>
+          responses:
+            "200":
+    /paymentmethod:
+      post:
+        description: <<create/update a paymentmethod for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "Name": "PM-Update-1373580946332",
+                "Type": "NON_CREDIT_CARD",
+                "sparse": false,
+                "Id": "14",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2013-07-11T15:12:41-07:00",
+                  "LastUpdatedTime": "2013-07-11T15:12:41-07:00"
+                }
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the paymentmethod specified by the entityId>>
+          responses:
+            "200":
+    /preferences:
+      post:
+        description: <<update a preferences for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "ProductAndServicesPrefs": {
+                  "ForSales": true,
+                  "ForPurchase": true
+                },
+                "SalesFormsPrefs": {
+                  "AllowEstimates": true
+                },
+                "sparse": false,
+                "Id": "1",
+                "SyncToken": "20"
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the preferences specified by the entityId>>
+          responses:
+    /purchase:
+      post:
+        description: <<create/update/delete a purchase for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "AccountRef": {
+                  "value": "50",
+                  "name": "CalOil Card"
+                },
+                "PaymentType": "CreditCard",
+                "EntityRef": {
+                  "value": "81",
+                  "name": "Bayshore CalOil Service",
+                  "type": "Vendor"
+                },
+                "Credit": false,
+                "TotalAmt": 32.00,
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "595",
+                "SyncToken": "1",
+                "MetaData": {
+                  "CreateTime": "2018-05-26T00:00:00-07:00",
+                  "LastUpdatedTime": "2018-05-26T00:00:00-07:00"
+                },
+                "TxnDate": "2018-05-26",
+                "Line": [
+                  {
+                    "Id": "1",
+                    "Amount": 32.00,
+                    "DetailType": "AccountBasedExpenseLineDetail",
+                    "AccountBasedExpenseLineDetail": {
+                      "ClassRef": {
+                        "value": "100000000000368490",
+                        "name": "Landscaping"
+                      },
+                      "AccountRef": {
+                        "value": "76",
+                        "name": "Automobile:Fuel"
+                      },
+                      "BillableStatus": "NotBillable",
+                      "TaxCodeRef": {
+                        "value": "NON"
+                      }
+                    }
+                  }
+                ]
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the purchase specified by the entityId>>
+          responses:
+            "200":
+    /purchaseorder:
+      post:
+        description: <<create/update/delete a purchaseorder for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "VendorAddr": {
+                  "Id": "337",
+                  "Line1": "Sylvester Brown",
+                  "Line2": "33 Old Bayshore Rd",
+                  "Line3": "Bayshore, CA  94326",
+                  "Lat": "INVALID",
+                  "Long": "INVALID"
+                },
+                "ShipAddr": {
+                  "Id": "338",
+                  "Line1": "Larry's Landscaping & Garden Supply",
+                  "Line2": "1045 Main Street",
+                  "Line3": "Bayshore, CA 94326",
+                  "Line4": "(415)  555-8888",
+                  "Lat": "INVALID",
+                  "Long": "INVALID"
+                },
+                "POStatus": "Open",
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "811",
+                "SyncToken": "1",
+                "DocNumber": "1001",
+                "TxnDate": "2013-07-19",
+                "Line": [
+                  {
+                    "Id": "1",
+                    "Description": "hose",
+                    "Amount": 50.00,
+                    "DetailType": "ItemBasedExpenseLineDetail",
+                    "ItemBasedExpenseLineDetail": {
+                      "CustomerRef": {
+                        "value": "110",
+                        "name": "Adam's Candy Shop"
+                      },
+                      "BillableStatus": "NotBillable",
+                      "ItemRef": {
+                        "value": "31",
+                        "name": "Irrigation Hose"
+                      },
+                      "ClassRef": {
+                        "value": "100000000000128319",
+                        "name": "Landscaping"
+                      },
+                      "UnitPrice": 50,
+                      "Qty": 1,
+                      "TaxCodeRef": {
+                        "value": "NON"
+                      }
+                    },
+                    "AccountBasedExpenseLineDetail": {
+                      "AccountRef": {
+                        "value": "61",
+                        "name": "Cost of Goods Sold"
+                      }
+                    }
+                  }
+                ],
+                "VendorRef": {
+                  "value": "24",
+                  "name": "Brown Equipment Rental"
+                },
+                "APAccountRef": {
+                  "value": "38",
+                  "name": "Accounts Payable"
+                },
+                "TotalAmt": 50.00
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the purchaseorder specified by the entityId>>
+          responses:
+            "200":
+    /refundreceipt:
+      post:
+        description: <<create/update/delete a refundreceipt for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "930",
+                "SyncToken": "1",
+                "MetaData": {
+                  "CreateTime": "2014-04-25T09:40:43-07:00",
+                  "LastUpdatedTime": "2014-04-25T09:54:48-07:00"
+                },
+                "CustomField": [
+                  {
+                    "Name": "P.O. Number",
+                    "Type": "StringType"
+                  },
+                  {
+                    "Name": "Sales Rep",
+                    "Type": "StringType"
+                  }
+                ],
+                "DocNumber": "10033",
+                "TxnDate": "2014-04-25",
+                "DepartmentRef": {
+                  "value": "1",
+                  "name": "Garden Services"
+                },
+                "PrivateNote": "This is a private note update via full update.",
+                "Line": [
+                  {
+                    "Id": "1",
+                    "LineNum": 1,
+                    "Amount": 420.00,
+                    "DetailType": "SalesItemLineDetail",
+                    "SalesItemLineDetail": {
+                      "ItemRef": {
+                        "value": "33",
+                        "name": "Concrete"
+                      },
+                      "TaxCodeRef": {
+                        "value": "NON"
+                      }
+                    }
+                  },
+                  {
+                    "Amount": 420.00,
+                    "DetailType": "SubTotalLineDetail",
+                    "SubTotalLineDetail": {}
+                  }
+                ],
+                "TxnTaxDetail": {
+                  "TotalTax": 0
+                },
+                "TotalAmt": 420.00,
+                "ApplyTaxAfterDiscount": false,
+                "PrintStatus": "NeedToPrint",
+                "Balance": 0,
+                "PaymentRefNum": "To Print",
+                "DepositToAccountRef": {
+                  "value": "40",
+                  "name": "Checking"
+                }
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the refundreceipt specified by the entityId>>
+          responses:
+            "200":
+    /reports:
+      /{reportType}:
+        get:
+          description: <<get the report specified by the reportType>>
+          responses:
+            "200":
+    /salesreceipt:
+      post:
+        description: <<create/update/delete a salesreceipt for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "sparse": false,
+                "Id": "97",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2013-03-13T13:31:43-07:00",
+                  "LastUpdatedTime": "2013-03-13T13:31:43-07:00"
+                },
+                "Line": {
+                  "Description": "UpdatedDescription",
+                  "Amount": 5,
+                  "DetailType": "SalesItemLineDetail",
+                  "SalesItemLineDetail": {
+                    "ItemRef": {
+                      "value": "1"
+                    },
+                    "UnitPrice": 0.5,
+                    "Qty": 10
+                  }
+                }
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the salesreceipt specified by the entityId>>
+          responses:
+            200:
+    /taxagency:
+      post:
+        description: <<create a taxagency for the company>>
+        body:
+          application/json:
+            example: |
+              {
+                "sparse": false,
+                "Id": "97",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2013-03-13T13:31:43-07:00",
+                  "LastUpdatedTime": "2013-03-13T13:31:43-07:00"
+                },
+                "Line": {
+                  "Description": "UpdatedDescription",
+                  "Amount": 5,
+                  "DetailType": "SalesItemLineDetail",
+                  "SalesItemLineDetail": {
+                    "ItemRef": {
+                      "value": "1"
+                    },
+                    "UnitPrice": 0.5,
+                    "Qty": 10
+                  }
+                }
+              }
+        responses:
+          200:
+      /{entityId}:
+        get:
+          description: <<get the taxagency specified by the entityId>>
+          responses:
+            200:
+    /taxcode:
+      /{entityId}:
+        get:
+          description: <<get the taxcode specified by the entityId>>
+          responses:
+            200:
+    /taxrate:
+      /{entityId}:
+        get:
+          description: <<get the taxrate specified by the entityId>>
+          responses:
+            200:
+    /taxservice:
+      post:
+        description: <<create a taxservice for the company>>
+        body:
+          application/json:
+            example: |
+              {
+                "TaxCode": "MyTaxCodeName",
+                "TaxRateDetails": [
+                  {
+                    "TaxRateName": "myNewTaxRateName",
+                    "RateValue": "8",
+                    "TaxAgencyId": "1",
+                    "TaxApplicableOn": "Sales"
+                  }
+                ]
+              }
+        responses:
+          200:
+    /term:
+      post:
+        description: <<create/update a term for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "Name": "TermForV3Testing-1373582384245",
+                "DiscountPercent": 10,
+                "DayOfMonthDue": 1,
+                "DueNextMonthDays": 2,
+                "DiscountDayOfMonth": 3,
+                "sparse": false,
+                "Id": "13",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2013-07-11T15:36:39-07:00",
+                  "LastUpdatedTime": "2013-07-11T15:36:39-07:00"
+                }
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the term specified by the entityId>>
+          responses:
+            "200":
+    /timeactivity:
+      post:
+        description: <<create/update/delete a timeactivity for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "TxnDate": "2013-01-29",
+                "NameOf": "Vendor",
+                "VendorRef": {
+                  "value": "61"
+                },
+                "CustomerRef": {
+                  "value": "60"
+                },
+                "DepartmentRef": {
+                  "value": "3"
+                },
+                "ItemRef": {
+                  "value": "4"
+                },
+                "ClassRef": {
+                  "value": "100100000000000321202"
+                },
+                "BillableStatus": "Billable",
+                "Taxable": false,
+                "HourlyRate": 400,
+                "BreakHours": 2,
+                "BreakMinutes": 30,
+                "StartTime": "2013-01-29T06:00:00-08:00",
+                "EndTime": "2013-01-29T18:00:00-08:00",
+                "Description": "Single activity update time sheet",
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "2",
+                "SyncToken": "0",
+                "MetaData": {
+                  "CreateTime": "2013-07-11T15:12:14-07:00",
+                  "LastUpdatedTime": "2013-07-11T15:12:14-07:00"
+                }
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the timeactivity specified by the entityId>>
+          responses:
+            200:
+    /vendor:
+      post:
+        description: <<create/update a vendor for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "TaxIdentifier": "99-5688293",
+                "TermRef": {
+                  "value": "1"
+                },
+                "Balance": 0,
+                "AcctNum": "35372649",
+                "Vendor1099": true,
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "60",
+                "SyncToken": "0",
+                "Title": "Mr.",
+                "GivenName": "Dianne's",
+                "FamilyName": "Auto",
+                "Suffix": "Sr.",
+                "CompanyName": "Dianne's Auto Shop",
+                "DisplayName": "Dianne's Auto Shop",
+                "PrintOnCheckName": "Dianne's Auto Shop",
+                "Active": true,
+                "Mobile": {
+                  "FreeFormNumber": "(650) 555-2000"
+                },
+                "WebAddr": {
+                  "URI": "http://DiannesAutoShop.com"
+                }
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the vendor specified by the entityId>>
+          responses:
+            "200":
+    /vendorcredit:
+      post:
+        description: <<create/update/delete a vendorcredit for the company>>
+        queryParameters: 
+          "operation": 
+            description: When present and value is "update" then the update body is to be used. When present and value is "delete" then the delete body is to be used.
+            type: string
+            required: false
+        body:
+          application/json:
+            example: |
+              {
+                "domain": "QBO",
+                "sparse": false,
+                "Id": "13",
+                "SyncToken": "0",
+                "TxnDate": "2013-09-20",
+                "Line": [
+                  {
+                    "Id": "1",
+                    "Amount": 100.00,
+                    "DetailType": "AccountBasedExpenseLineDetail",
+                    "AccountBasedExpenseLineDetail": {
+                      "CustomerRef": {
+                        "value": "2",
+                        "name": "Cust1"
+                      },
+                      "AccountRef": {
+                        "value": "8",
+                        "name": "Bank Charges"
+                      },
+                      "BillableStatus": "Billable",
+                      "TaxCodeRef": {
+                        "value": "TAX"
+                      }
+                    }
+                  }
+                ],
+                "VendorRef": {
+                  "value": "5",
+                  "name": "5tzQGh9ljv"
+                },
+                "APAccountRef": {
+                  "value": "38",
+                  "name": "Accounts Payable (A/P)"
+                },
+                "TotalAmt": 90.00
+              }
+        responses:
+          "200":
+      /{entityId}:
+        get:
+          description: <<get the vendorcredit specified by the entityId>>
+          responses:
+            200:
