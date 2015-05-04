@@ -1,0 +1,84 @@
+#%RAML 0.8
+title: Quickbooks OAuth 1.0 API
+version: 1.0
+baseUri: https://oauth.intuit.com/oauth/v1
+/authorize:
+  get:
+    description: <<insert text or markdown here>>
+    queryParameters: 
+      client_id: 
+        description: client ID of the app
+        type: string
+        required: true
+      client_secret: 
+        description: client secret of the app
+        type: string
+        required: true
+/get_request_token:
+  post:
+    description: <<get the request Token>>
+    queryParameters: 
+      oauth_consumer_key: 
+        type: string
+        required: true
+      oauth_signature_method:
+        type: string
+        required: true
+      oauth_signature: 
+        type: string
+        required: true
+      oauth_timestamp: 
+        type: date
+        required: true
+      oauth_nonce: 
+        type: string
+        required: true
+      oauth_version: 
+        type: string
+        required: true
+      oauth_callback: 
+        type: string
+        required: true
+    responses:
+      200:
+/get_access_token:
+  post:
+      description: <<get the Access Token>>
+      queryParameters:
+        oauth_consumer_key: 
+          type: string
+          required: true
+        oauth_token: 
+          type: string
+          required: true
+        oauth_signature_method:
+          type: string
+          required: true
+        oauth_signature: 
+          type: string
+          required: true
+        oauth_timestamp: 
+          type: date
+          required: true
+        oauth_nonce: 
+          type: string
+          required: true
+        oauth_version: 
+          type: string
+          required: true
+        oauth_verifier: 
+          type: string
+          required: false
+      responses:
+        200:
+/auth_success:
+  displayName: Re-direct URL for box Auth server
+  get:
+    description: <<send auth token and status>>
+    queryParameters:
+      code:
+        type: string
+        required: true
+      status:
+        type: string
+        required: true
