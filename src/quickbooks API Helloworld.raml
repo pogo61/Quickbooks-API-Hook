@@ -1,0 +1,16 @@
+#%RAML 0.8
+title: Quickbooks API Helloworld
+version: 1.0
+baseUri: http://localhost:9905/quickbooks_hook
+/helloworld:
+  get:
+    description: <<returns details about accounts in the company>>
+    queryParameters: 
+        "company_id": 
+          description: the QB CompanyId 
+          type: string
+          required: true
+    responses:
+      200:
+        body:
+          application/json:
