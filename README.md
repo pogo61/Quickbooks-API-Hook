@@ -75,7 +75,7 @@
 - Using curl -X GET  http://ND HOST:ND PORT/quickbooks_hook/helloworld?company_id=1353176045 --header "Content-Type:application/json" --header "authKey:m70tvlms5jj"
 
 -  the response should be similar to the below:  
-    {
+    ```{
     "QueryResponse": {
         "Account": [
             {
