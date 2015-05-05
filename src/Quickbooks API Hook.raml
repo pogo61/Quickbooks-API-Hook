@@ -39,12 +39,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "sparse": false
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the account specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /query:
       get:
         description: <<search for data within the company>>
@@ -54,7 +58,9 @@ baseUri: https://quickbooks.api.intuit.com/v3
             type: string
             required: true
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
     /attachable:
       post:
         description: <<create/update/delete an Attachable for the company>>
@@ -85,12 +91,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "sparse": false
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the attachable specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /bill:
       post:
         description: <<create/update/delete a Bill for the company>>
@@ -163,12 +173,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "TotalAmt": 200.0
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the Bill specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /billpayment:
       post:
         description: <<create/update/delete an Bill Payment for the company>>
@@ -220,12 +234,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "time": "2013-10-18T15:15:11.925-07:00"
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the Bill Payment specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /class:
       post:
         description: <<create/update an Account for the company>>
@@ -257,18 +275,24 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "AttachableRef": []
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the account specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /companyinfo:
       /{companyid}:
         get:
           description: <<get the company specified by the companyId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /creditmemo:
       post:
         description: <<create/update/delete an Account for the company>>
@@ -405,12 +429,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "time": "2013-04-29T17:30:51.609-07:00"
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the account specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /customer:
       post:
         description: <<create/update a customer for the company>>
@@ -465,12 +493,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 DisplayName: "Peter G. Griffin"
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the account specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /department:
       post:
         description: <<create/update a department for the company>>
@@ -502,7 +534,9 @@ baseUri: https://quickbooks.api.intuit.com/v3
         get:
           description: <<get the department specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /employee:
       post:
         description: <<create/update a employee for the company>>
@@ -546,12 +580,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 }
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the employee specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /estimate:
       post:
         description: <<create/update a estimate for the company>>
@@ -651,12 +689,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "time":"2013-03-14T11:44:39.734-07:00"
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the estimate specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /invoice:
       post:
         description: <<create/update a invoice for the company>>
@@ -705,12 +747,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "DueDate": "2013-04-14"
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the invoice specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /item:
       post:
         description: <<create/update a item for the company>>
@@ -750,12 +796,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 }
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the item specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /journalentry:
       post:
         description: <<create/update/delete a journalentry for the company>>
@@ -810,12 +860,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 }
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the journalentry specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /payment:
       post:
         description: <<create/update a payment for the company>>
@@ -869,7 +923,9 @@ baseUri: https://quickbooks.api.intuit.com/v3
         get:
           description: <<get the payment specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /paymentmethod:
       post:
         description: <<create/update a paymentmethod for the company>>
@@ -893,12 +949,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 }
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the paymentmethod specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /preferences:
       post:
         description: <<update a preferences for the company>>
@@ -923,7 +983,9 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "SyncToken": "20"
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the preferences specified by the entityId>>
@@ -984,12 +1046,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 ]
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the purchase specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /purchaseorder:
       post:
         description: <<create/update/delete a purchaseorder for the company>>
@@ -1071,12 +1137,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "TotalAmt": 50.00
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the purchaseorder specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /refundreceipt:
       post:
         description: <<create/update/delete a refundreceipt for the company>>
@@ -1150,18 +1220,24 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 }
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the refundreceipt specified by the entityId>>
           responses:
-            "200":
+           200: 
+              body: 
+                "application/json":
     /reports:
       /{reportType}:
         get:
           description: <<get the report specified by the reportType>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /salesreceipt:
       post:
         description: <<create/update/delete a salesreceipt for the company>>
@@ -1195,12 +1271,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 }
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the salesreceipt specified by the entityId>>
           responses:
-            200:
+            200: 
+              body: 
+                "application/json":
     /taxagency:
       post:
         description: <<create a taxagency for the company>>
@@ -1229,24 +1309,32 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 }
               }
         responses:
-          200:
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the taxagency specified by the entityId>>
           responses:
-            200:
+            200: 
+              body: 
+                "application/json":
     /taxcode:
       /{entityId}:
         get:
           description: <<get the taxcode specified by the entityId>>
           responses:
-            200:
+            200: 
+              body: 
+                "application/json":
     /taxrate:
       /{entityId}:
         get:
           description: <<get the taxrate specified by the entityId>>
           responses:
-            200:
+            200: 
+              body: 
+                "application/json":
     /taxservice:
       post:
         description: <<create a taxservice for the company>>
@@ -1265,7 +1353,9 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 ]
               }
         responses:
-          200:
+          200: 
+            body: 
+              "application/json":
     /term:
       post:
         description: <<create/update a term for the company>>
@@ -1292,12 +1382,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 }
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the term specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /timeactivity:
       post:
         description: <<create/update/delete a timeactivity for the company>>
@@ -1345,12 +1439,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 }
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the timeactivity specified by the entityId>>
           responses:
-            200:
+            200: 
+              body: 
+                "application/json":
     /vendor:
       post:
         description: <<create/update a vendor for the company>>
@@ -1390,12 +1488,16 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 }
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the vendor specified by the entityId>>
           responses:
-            "200":
+            200: 
+              body: 
+                "application/json":
     /vendorcredit:
       post:
         description: <<create/update/delete a vendorcredit for the company>>
@@ -1445,9 +1547,13 @@ baseUri: https://quickbooks.api.intuit.com/v3
                 "TotalAmt": 90.00
               }
         responses:
-          "200":
+          200: 
+            body: 
+              "application/json":
       /{entityId}:
         get:
           description: <<get the vendorcredit specified by the entityId>>
           responses:
-            200:
+            200: 
+              body: 
+                "application/json":
