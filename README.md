@@ -116,33 +116,32 @@
 
 ### How Hello World Works
 #### An Akana Integration Primer
-The MailChimp API Hook is a "Virtual Service". That is, its interface is not that of a real service implementation. It can be a proxy to a "real" implementation, or it can be an aggregate (a combination) of a number of "real" implementations. In Policy Manager a "real" implementation is called a "Physical Service".
+The QuickBooks API Hook is a "Virtual Service". That is, its interface is not that of a real service implementation. It can be a proxy to a "real" implementation, or it can be an aggregate (a combination) of a number of "real" implementations. In Policy Manager a "real" implementation is called a "Physical Service".
 Apart from offering a different interface to the Physical Service, a Virtual Service offers the ability to attach Policies for security, logging, QoS, and a number of other non-functional capabilities.
 Virtual Services also have the ability to have Custom Process and Scripts run before the Physical Service is called. Here is where a lot of the magic of Integration occurs.
 
 #### Hello World
-To create the helloworld operation the following was added to a base RAML document to create the [MailChimp Helloworld.raml] (https://github.com/pogo61/MailChimp-API-Hook/blob/master/src/MailChimp%20Helloworld.raml)  document:  
+To create the helloworld operation the following was added to a base RAML document to create the [Quickbooks API Helloworld.raml] (https://github.com/pogo61/Quickbooks-API-Hook/blob/master/src/quickbooks%20API%20Helloworld.raml)  document:  
     /helloworld:  
       &nbsp;post:  
-        &nbsp;&nbsp;description: "returns details about the authorised user"  
+        &nbsp;&nbsp;description: "blah blah"  
         &nbsp;&nbsp;&nbsp;responses:  
           &nbsp;&nbsp;&nbsp;&nbsp;200:  
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body:  
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/atom+xml:  
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application/json:  
 
 Then a VS was created by using the RAML as the definition source.
-Then the /helloworld Operation in the VS was mapped to the POST /account/info operation in the MailChimp_Core_API PS.
+Then the /helloworld Operation in the VS was mapped to the GET /company/{companyId}/query operation in the Quickbooks_API_Hook PS.
 
-Go to the MailChimp_API_Helloworld VS -> Operations Tab -> POST /hellowworld operation -> Process tab you'll see this image:
-![Helloworld process] 
-(https://github.com/pogo61/MailChimp-API-Hook/blob/master/Screen%20Shot.png)
+Go to the Quickbooks_API_Helloworld VS -> Operations Tab -> GET /hellowworld operation -> Process tab you'll see this image:
+![Helloworld process] (https://github.com/pogo61/Quickbooks-API-Hook/blob/master/src/Screen%20Shot%202015-05-05%20at%209.39.56%20pm.png)
 
 Double click on the invoke activity to see how these work to make the Hello World operation call successful.
 
 
 ### Create Your Own Integration with the Google Sheets API
 The Hello World operation is one simple way of integrating or extending your API's.
-Take a look at the [MailChimp API Integration](https://github.com/pogo61/MailChimp-API-Integration). This will give you a deeper inderstanding of the richness of our gateway product in integrating to API's    
+Take a look at the [Quickbooks API Integration](https://github.com/pogo61/MailChimp-API-Integration). This will give you a deeper inderstanding of the richness of our gateway product in integrating to API's    
 
 ### Modify and Build
 In the event you need to change the API Hook.   Here are the instructions to do so. 
