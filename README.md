@@ -61,7 +61,7 @@
 - ensure that the status changes to "Workflow Is Completed"
 
 #### Configure Security
-- Go to MailChimp API Hook -> Policies -> Operational Policies ->    ProcessVariables policy
+- Go to Quickbooks API Hook -> Policies -> Operational Policies ->    ProcessVariables policy
     - Click "modify" in the XML Policy Tab. An XML Policy Content editor dialog will be displayed.
     - change the value of the 'redirectURI' element to be the 'Redirect URL' value to https://"ND HOST":"ND HTTPS PORT"/auth_success
     - save the changes
