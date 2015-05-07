@@ -1,0 +1,18 @@
+#%RAML 0.8
+title: Quickbooks to DropBox Integrator
+version: 1.0
+baseUri: http://localhost:9905/quickbooks_int
+/export:
+  post:
+    description: <<exports the account name and amount from Quickbooks to a text doc in Dropbox>>
+    queryParameters: 
+      "company_id": 
+        description: the QB CompanyId 
+        type: string
+        required: true
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:

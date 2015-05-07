@@ -51,6 +51,7 @@
 - this will create a Quickbooks API Hook Organisation with the requisite artefacts needed to run the API.
 - you can use the API as is calling http://"URL of the Listener of your ND"/quickbooks_hook, or you can create an API in CM and expost it.
     - if you chose to create an API in CM, you must create a Service in your CM tenant which is a Virtual Service of the Quickbooks_API_Hook_vs0 VS that was created by the import. Then Go to CM and create a API from an existing Service.
+- Please *note* that the Quickbook API Hook is pointing to the Quickbooks [Sandbox](https://sandbox-quickbooks.api.intuit.com/v3). When you have promote your App to Quickbooks [Production](https://qb.sbfinance.intuit.com/v3) then you must change the Quickbooks API Hook -> Services -> Quickbooks_API_Hook -> Access Points then select the "Modify Access Point" dropdown menu item and change the URL from https://sandbox-quickbooks.api.intuit.com/v3 to https://qb.sbfinance.intuit.com/v3 and selecting the "Finish" button
 
 #### Verify Import
 - Expand the services folder in the Google Sheets API Hook you imported and find Quickbooks_API_Hook_vs0 VS
