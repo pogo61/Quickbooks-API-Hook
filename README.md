@@ -142,7 +142,7 @@ Double click on the invoke activity to see how these work to make the Hello Worl
 
 ### Create Your Own Integration with the Google Sheets API
 The Hello World operation is one simple way of integrating or extending your API's.
-Take a look at the [Quickbooks API Integration](https://github.com/pogo61/MailChimp-API-Integration). This will give you a deeper inderstanding of the richness of our gateway product in integrating to API's    
+Take a look at the [Quickbooks API Integration](https://github.com/pogo61/Quickbooks-to-DropBox-Integrator). This will give you a deeper inderstanding of the richness of our gateway product in integrating to API's    
 
 ### Modify and Build
 In the event you need to change the API Hook.   Here are the instructions to do so. 
